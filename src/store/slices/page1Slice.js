@@ -12,11 +12,15 @@ export const createPage1Slice = set => ({
   selectedPeople: { adults: 0, infants: 0, children: 0 },
   finalPrice: null,
   error_msg_pass:false,
+  WrongPass:'',
+  error_msg:'',
   selectedPeoplePrice: { adultsPrice: 0, infantsPrice: 0, childrenPrice: 0 },
   setSelectedRoute: newSelectedRoute =>
     set(state => ({ ...state, selectedRoute: newSelectedRoute })),
     setSelectedLang: newSelectedLang =>
     set(state => ({ ...state, selectedLang: newSelectedLang })),
+    setWrongPass: newWrongPass =>
+    set(state => ({ ...state, WrongPass: newWrongPass })),
   setSelectedPort: newSelectedPort =>
     set(state => ({ ...state, selectedPort: newSelectedPort })),
   setSelectedDate: newSelectedDate =>
@@ -33,6 +37,9 @@ export const createPage1Slice = set => ({
     set(state => ({ ...state, finalPrice: newFinalPrice })),
     seterror_msg_pass: newerror_msg_pass =>
     set(state => ({ ...state, error_msg_pass: newerror_msg_pass })),
+    seterror_msg: newerror_msg =>
+    set(state => ({ ...state, error_msg: newerror_msg })),
   setSelectedPeoplePrice: args => set(state => peoplePriceReducer(state, args)),
+  
   
 });

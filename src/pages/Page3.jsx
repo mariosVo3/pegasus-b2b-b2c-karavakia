@@ -36,6 +36,7 @@ function Page3() {
   const navigate = useNavigate();
   const usersInformation = useBoundStore(state => state.usersInformation);
   let menus;
+  
 //here starts 
 //const selectedCard = useBoundStore(state => state.selectedCard);
     const selectedDate = useBoundStore(state => state.selectedDate);
@@ -88,17 +89,18 @@ function Page3() {
 if(optional.isFetched){
       setrsvr({
        PNR:optional.data.rsrv?.PNR,
-       error:optional.data.error_msg,
+       data:optional.data,
       });
 }
-console.log(rsvr)
-  if (rsvr?.PNR ) {
-    navigate('/ekdosh-eisithriwn');
-  }
-  else{
-    menus = <LoadingMessage />;
-    
-  }
+
+if (rsvr?.PNR) {
+  navigate('/ekdosh-eisithriwn');
+}else {
+  menus = <LoadingMessage />;
+
+}
+
+
   return (
     <>
       <Container maxWidth="xl">

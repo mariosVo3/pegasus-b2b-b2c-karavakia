@@ -67,7 +67,6 @@ function CustomerOverview({
     setNextStepObj({ ...nextStepObj, showNewBooking: true });
   };
 
-  console.log(nextStepObj)
   return (
     <ThemeProvider theme={theme}>
       <Grid

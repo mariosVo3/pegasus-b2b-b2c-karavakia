@@ -126,7 +126,7 @@ function CardInPage2() {
           <Grid item xs={3}>
             <BoxGapJCFlexEnd>
               <TypographyZindex variant="body1">
-                <Link href={selectedCard.url} sx={{ color: colors.yellow }}>
+                <Link href={selectedCard.url} target="_blank" sx={{ color: colors.yellow }}>
                   {plhrofories}
                 </Link>
               </TypographyZindex>

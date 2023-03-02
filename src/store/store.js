@@ -20,6 +20,7 @@ store = persist(store, {
     final_reserve:state.final_reserve,
     flag_final:state.flag_final,
     selectedPeople:state.selectedPeople,
+    finalPrice:state.finalPrice,
     final_reserveB2BOptional:state.final_reserveB2BOptional,
     
     

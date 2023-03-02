@@ -56,7 +56,6 @@ export default function BookingsCard({ data, status }) {
   const [cruises, setCruises] = React.useState(null);
   const [checked, setChecked] = React.useState([0]);
   const [nationalitiesData, setNationalitiesData] = React.useState(null);
-
   //=============================================
   //language handling
   const [text, setText] = React.useState({

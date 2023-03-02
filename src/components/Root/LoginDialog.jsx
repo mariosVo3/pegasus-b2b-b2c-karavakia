@@ -9,10 +9,14 @@ import { useFormik } from 'formik';
 import { loginSchema } from '../../schema/loginSchema';
 import { nextStepContext } from '../Context/NextStepContextProvider';
 import { useBoundStore } from '../../store/store';
+import { useEffect, useState
+ } from 'react';
 
 export default function LoginDialog(props) {
   const { nextStepObj, setNextStepObj } = React.useContext(nextStepContext);
-  
+  const error_msg_pass = useBoundStore(state => state.error_msg_pass);
+  const WrongPass = useBoundStore(state => state.WrongPass);
+  const [BackgroundClass,setBackgroundClass]=useState('')
   const [userCredentials, setUserCredentials]=React.useState(null)
   const [text, setText] = React.useState({
     syndesiPanw: 'Σύνδεση',
@@ -20,9 +24,9 @@ export default function LoginDialog(props) {
     kwdikos: 'Κωδικός',
     akyrwsh: 'ΑΚΥΡΩΣΗ',
     syndesh: 'ΣΥΝΔΕΣΗ',
+    lathos_creds: 'Λάθος Όνομα ή Κωδικός'
   });
-
-
+ 
   //HANDLING LANGUAGE CHANGES
   /*React.useEffect(() => {
     switch (nextStepObj.locale) {
@@ -92,9 +96,9 @@ export default function LoginDialog(props) {
       <Dialog
         open={props.open}
         onClose={props.onDialogLoginCloseHandler}
-        sx={{ minWidth: '400px' }}
+        sx={{ minWidth: '400px'   }}
       >
-        <DialogTitle>{text.syndesiPanw}</DialogTitle>
+        <DialogTitle>{text.syndesiPanw}   <p sx={{color : "red"}}> {WrongPass}</p>  </DialogTitle>
         <form onSubmit={formik.handleSubmit}>
           <DialogContent>
             <TextField
@@ -131,10 +135,10 @@ export default function LoginDialog(props) {
             />
           </DialogContent>
           <DialogActions>
-            <Button type="button" onClick={props.onDialogLoginCloseHandler}>
+            <Button type="button" onClick={props.onDialogLoginCloseHandler} >
               {text.akyrwsh}
             </Button>
-            <Button type="submit">{text.syndesh}</Button>
+            <Button type="submit" sx={{backgroundColor:{BackgroundClass}}} >{text.syndesh}</Button>
           </DialogActions>
         </form>
       </Dialog>

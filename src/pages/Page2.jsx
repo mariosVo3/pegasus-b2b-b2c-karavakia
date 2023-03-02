@@ -25,6 +25,7 @@ import { colors } from '../components/colors';
 import { styled } from '@mui/system';
 import CostAnalyzer from '../components/Page2/CostAnalyzer';
 
+import dayjs from 'dayjs';
 
 
 
@@ -98,7 +99,9 @@ export default function Page2() {
   const setSelectedUsersInformation = useBoundStore(
     state => state.setSelectedUsersInformation
   );
-
+  const error_msg = useBoundStore(
+    state => state.error_msg
+  );
   const selectedLanguage = useTranslateStore(state => state.selectedLanguage);
   //GETTING COUNTRIES DATA
   const countries = useQuery(['countries'], getCountries);
@@ -243,6 +246,7 @@ export default function Page2() {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDatePicker
                     label={birth}
+                    maxDate={dayjs(new Date())}
                     inputFormat="DD/MM/YYYY"
                     value={value[index] ? value[index] : null}
                     onChange={newValue => handleChange(newValue, index)}
@@ -319,12 +323,14 @@ export default function Page2() {
                 alignItems: 'center',
               }}
             >
-       
+              
               <PaymentButton  type="submit">{plirwmi}</PaymentButton>
             </Grid>
           </Grid>
         </Grid>
       </form>
+
+      <ErrorMessage  message={error_msg} />
     </Container>
   );
 }

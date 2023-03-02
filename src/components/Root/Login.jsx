@@ -23,6 +23,11 @@ const typographyLikeButton = {
 export default function Login() {
   const { nextStepObj, setNextStepObj } = React.useContext(nextStepContext);
   const error_msg_pass = useBoundStore(state => state.error_msg_pass);
+  const lang = useBoundStore(state => state.lang);
+
+  const setWrongPass = useBoundStore(
+    state => state.setWrongPass
+  );
   const seterror_msg_pass = useBoundStore(
     state => state.seterror_msg_pass
   );
@@ -68,12 +73,14 @@ export default function Login() {
   //on click event from login
   const dialogLoginOpenHandler = () => {
     setDialogLoginOpen(true);
+    setWrongPass('')
   };
 
   //on click event from LoginDialog component
   const dialogLoginCloseHandler = () => {
     setDialogLoginOpen(false);
-    seterror_msg_pass(false)
+    setWrongPass('')
+
   };
   useEffect(() => {
     setUserCredentials(null)
@@ -86,7 +93,8 @@ export default function Login() {
   };
   //==========================================================
   const postlogingOBJ={
-    name_pass:userCredentials
+    name_pass:userCredentials,
+    lang:lang,
   }
   /*
 if(userCredentials){
@@ -100,7 +108,11 @@ if(userCredentials){
 
   });
 if(login.isSuccess){ 
-   seterror_msg_pass(login.data.success)  
+   seterror_msg_pass(login.data.success)
+   if(!login.data.success){
+    setWrongPass('Λάθος Κωδικός')
+    console.log('me')
+   }  
 }
 
 if(userCredentials){

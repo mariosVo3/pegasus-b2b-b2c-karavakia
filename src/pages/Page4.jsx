@@ -332,10 +332,14 @@ const fileName = "Pegasus Tickets" + postFinalizeobj.leader_name;*/
     );
   });
 
+/*selectedCard?.analysis.forEach(route => {
+  if (route.diffHour == 0 ) {
+    route.diffHour=''
+  }else {
+    route.diffHour=route.diffHour +  wradeixe + '-'; 
+  }
+});*/
 
-
-
-console.log(final_reserve)
 
 if(final_reserve?.rsrv || (flag_final== false)){
 
@@ -500,7 +504,7 @@ if(final_reserve?.rsrv || (flag_final== false)){
                   </BoxCyrcle>
                   <Typography variant="h6">
                     {' '}
-                    {anaApo} {apo} {r.origin}({r.diffHour}{wradeixe}-{r.diffMin}{lepta})
+                    {anaApo} {apo} {r.origin}({r.diffHour}{r.diffMin}{lepta})
                   </Typography>
                  
                 </BoxCenter>

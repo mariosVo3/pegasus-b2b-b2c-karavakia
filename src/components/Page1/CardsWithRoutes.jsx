@@ -138,12 +138,12 @@ if(lang=='gr'){
  
  
 
-  
  
 
   const postRouteAnalysisObj = {
     cruise_id,
     date: dayjs(selectedDate).format('YYYY-MM-DD'),
+    lang:lang,
   };
 
   const routeAnalysis = useQuery({
@@ -184,6 +184,7 @@ if(lang=='gr'){
       vessel,
     });
   };
+  
   let content;
   if (routeAnalysis.isLoading) {
     content = <LoadingMessage />;
@@ -266,7 +267,7 @@ if(lang=='gr'){
                   </Grid>
                   <Grid xs={12} md={3}>
                     <TypographyZindex variant="body1" color={colors.yellow}>
-                      <Link href={url} color="inherit">
+                      <Link href={url} target="_blank" color="inherit">
                         {plhrofories}
                       </Link>
                     </TypographyZindex>
