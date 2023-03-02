@@ -11,7 +11,7 @@ export const createPage1Slice = set => ({
   lang:'GR',
   selectedPeople: { adults: 0, infants: 0, children: 0 },
   finalPrice: null,
-  error_msg_pass:true,
+  error_msg_pass:false,
   selectedPeoplePrice: { adultsPrice: 0, infantsPrice: 0, childrenPrice: 0 },
   setSelectedRoute: newSelectedRoute =>
     set(state => ({ ...state, selectedRoute: newSelectedRoute })),

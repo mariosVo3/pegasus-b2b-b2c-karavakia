@@ -73,7 +73,7 @@ export default function Login() {
   //on click event from LoginDialog component
   const dialogLoginCloseHandler = () => {
     setDialogLoginOpen(false);
-    seterror_msg_pass(null)
+    seterror_msg_pass(false)
   };
   useEffect(() => {
     setUserCredentials(null)
@@ -81,9 +81,7 @@ export default function Login() {
 
   const [userCredentials, setUserCredentials] = React.useState(null);
   const dialogLoginSubmitHandler = submitedUserCredentials => {
-    //setDialogLoginOpen(false);
     setUserCredentials(submitedUserCredentials);
-    //setNextStepObj({ ...nextStepObj, isLoggedIn: true });
    
   };
   //==========================================================
@@ -102,29 +100,16 @@ if(userCredentials){
 
   });
 if(login.isSuccess){ 
-   seterror_msg_pass(false)  
+   seterror_msg_pass(login.data.success)  
 }
 
-
-if(!error_msg_pass){
-  setDialogLoginOpen(false);
-  setNextStepObj({ ...nextStepObj, isLoggedIn: true , typedSearch: "", customerId:login.data.id ,customerName:login.data.name, agency_name:userCredentials.email, agency_code:userCredentials.password});
-  
-}
-  /*
-if(login.isFetched){
-  if(login.data?.error){
-    //setNextStepObj({ ...nextStepObj, errorMsg:login.data.error });
-    seterror_msg_pass(login.data.error)
-    //setDialogLoginOpen(false);
-
-  }else{
+if(userCredentials){
+  if(error_msg_pass){
     setDialogLoginOpen(false);
-    setNextStepObj({ ...nextStepObj, isLoggedIn: true , typedSearch: "", customerId:login.data.id ,customerName:login.data.name, agency_name:userCredentials.email, agency_code:userCredentials.password});
-    
-    
+    setNextStepObj({ ...nextStepObj, isLoggedIn: true , typedSearch: "", customerId:login.data?.id ,customerName:login.data?.name, agency_name:userCredentials?.email, agency_code:userCredentials?.password});
   }
-}*/
+}
+ 
 
 
   return (

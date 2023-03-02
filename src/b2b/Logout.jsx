@@ -70,7 +70,7 @@ export default function Logout() {
       agency_code:'site1101',
       
     });
-    seterror_msg_pass(true)
+    seterror_msg_pass(false)
     
   };
 

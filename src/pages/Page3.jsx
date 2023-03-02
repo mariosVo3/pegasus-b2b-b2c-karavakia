@@ -16,7 +16,7 @@ import { useState } from 'react';
 import { nextStepContext } from '../components/Context/NextStepContextProvider';
 import React from 'react';
 import { useTranslateStore } from '../store/translateStore';
-
+import ErrorMessage from '../components/ErrorMessage';
 
 
 
@@ -24,28 +24,23 @@ import { useTranslateStore } from '../store/translateStore';
 function Page3() {
   const selectedCard = useBoundStore(state => state.selectedCard);
   const lang = useTranslateStore(state => state.lang);
-
+  const flag_final = useBoundStore(state => state.flag_final);
   const { adults, children, infants } = useBoundStore(
     state => state.selectedPeople
   );
   const rsvr = useBoundStore(state => state.rsvr);
   const { nextStepObj, setNextStepObj } = React.useContext(nextStepContext);
-
   const setrsvr = useBoundStore(
     state => state.setrsvr
   );
   const navigate = useNavigate();
-
-
   const usersInformation = useBoundStore(state => state.usersInformation);
   let menus;
-
 //here starts 
 //const selectedCard = useBoundStore(state => state.selectedCard);
     const selectedDate = useBoundStore(state => state.selectedDate);
     const selectedPeople = useBoundStore(state => state.selectedPeople);
    // const usersInformation  = useBoundStore(state => state.usersInformation);
-console.log(usersInformation)
   const pushPassengers = (people, type) => {
     let k=0;
     for (let i = 0; i < people; i++) {
@@ -85,27 +80,30 @@ console.log(usersInformation)
     const optional = useQuery({
         queryKey: ['optional', postoptionalobj],
         queryFn: () => getoptional(postoptionalobj),
-    });
-    if(optional.isFetched){
-      setrsvr({
-       PNR:optional.data.rsrv.PNR,
-      
-    });
-    }
+        enabled: !!flag_final //enable when payment complete
 
-  if (optional.isLoading ) {
-    menus = <LoadingMessage />;
+    });
+
+
+if(optional.isFetched){
+      setrsvr({
+       PNR:optional.data.rsrv?.PNR,
+       error:optional.data.error_msg,
+      });
+}
+console.log(rsvr)
+  if (rsvr?.PNR ) {
+    navigate('/ekdosh-eisithriwn');
   }
   else{
-    navigate('/ekdosh-eisithriwn');
-
+    menus = <LoadingMessage />;
+    
   }
   return (
     <>
       <Container maxWidth="xl">
         {menus}
       </Container>
-      
     </>
   );
 }

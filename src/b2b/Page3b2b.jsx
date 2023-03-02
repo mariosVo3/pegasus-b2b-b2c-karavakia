@@ -110,7 +110,7 @@ pushPassengers(selectedPeople.infants, 'IN');
     var diarkeia='Διάρκεια '
     var wradeixe = 'ω'
     var lepta= 'λ';
-    var option_eisitiria= 'Η έκδοση των εισιτηρίων πρέπει να γίνει μέχρι'
+    var option_eisitiria= 'Προθεσμία επιβεβαίωσης καταχώρησης:'
  }else if(lang=="en"){
   var stoixeia_ekdromis='Trip Details'
   var prwto_onoma='Leader Name'

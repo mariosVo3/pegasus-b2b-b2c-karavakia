@@ -20,6 +20,7 @@ import Page1b2b from './Page1b2b';
 import Page2b2b from './Page2b2b';
 import Page3b2b from './Page3b2b';
 import Page4b2b from './Page4b2b';
+import ModalModify from './Page1/ModalModify';
 
 
 const theme = createTheme({
@@ -286,7 +287,7 @@ function CustomerOverview({
             <Page4b2b style={{marginTop:"100px"}} data={nextStepObj}  />
           )}
           {nextStepObj?.showModifyPage && (
-            <Page3b2b
+            <ModalModify
               data={nextStepObj.selectedBookingCardInfo}
               option={'modify'}
             />

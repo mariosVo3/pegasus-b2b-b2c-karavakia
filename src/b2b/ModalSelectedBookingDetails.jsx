@@ -20,12 +20,12 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: {
-    md: 600,
-    xs: 380,
+    md: 1000,
+    xs: 1000,
   },
   maxHeight: {
-    md: 800,
-    xs: 550,
+    md: 1000,
+    xs: 1000,
   },
   bgcolor: 'background.paper',
   boxShadow: 24,

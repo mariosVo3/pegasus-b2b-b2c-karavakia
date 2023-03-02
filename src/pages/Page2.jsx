@@ -178,7 +178,6 @@ export default function Page2() {
         break;
     }
 
-
     formsContent = (
       <>
         {arr.map((_, index) => {
@@ -321,7 +320,7 @@ export default function Page2() {
               }}
             >
        
-        <PaymentButton  type="submit">{plirwmi}</PaymentButton>
+              <PaymentButton  type="submit">{plirwmi}</PaymentButton>
             </Grid>
           </Grid>
         </Grid>
