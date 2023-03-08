@@ -248,6 +248,8 @@ pushPassengers(selectedPeople.infants, 'IN');
  
  const postFinalizeobj = {
   leader_name: usersInformation[0].lastName +" " + usersInformation[0].firstName,
+  leader_first_name: usersInformation[0].firstName,
+  leader_last_name:  usersInformation[0].lastName,
   leader_phone:usersInformation[0].phoneNumber,
   leader_email:usersInformation[0].email,
   vessel_code:selectedCard.vessel_code,

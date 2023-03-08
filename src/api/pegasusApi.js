@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const pegasusApi = axios.create({
-  baseURL: 'http://10.8.0.20:1883/pegasus',
+  baseURL: 'https://infounit.ten06.eu/pegasus',
 });
 
 export const getPorts = async () => {
@@ -111,6 +111,10 @@ export const getFinalize = async obj => {
   return response.data;
 };
 
+export const getAgentOrders = async obj => {
+  const response = await pegasusApi.post('/agent_orders', obj);
+  return response.data;
+};
 
 
 //B2B calls

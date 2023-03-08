@@ -38,13 +38,13 @@ function Root() {
     affiliated: searchParams.get('af'),
     
   });
+  
 }, []);
 
 const [customerData, setCustomerData] = React.useState(null);
   const receiveCustomerData = receivedCustomerData => {
     setCustomerData(receivedCustomerData);
   };
-
 
   return (
 
@@ -54,7 +54,9 @@ const [customerData, setCustomerData] = React.useState(null);
     >
               {!nextStepObj.isLoggedIn && (
                 <>
+                
       <div>
+        
         <CssBaseline />
         <BoxSBnoBP sx={{ backgroundColor: colors.yellow, padding: '5px 10px' }}>
           <Flags />

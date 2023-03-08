@@ -18,7 +18,6 @@ import Page3 from './pages/Page3';
 import Page4 from './pages/Page4';
 import ErrorPage from './pages/ErrorPage';
 
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -44,6 +43,7 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
