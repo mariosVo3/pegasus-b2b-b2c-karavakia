@@ -42,8 +42,9 @@ function Page3() {
     const selectedDate = useBoundStore(state => state.selectedDate);
     const selectedPeople = useBoundStore(state => state.selectedPeople);
    // const usersInformation  = useBoundStore(state => state.usersInformation);
+   let k=0;
+
   const pushPassengers = (people, type) => {
-    let k=0;
     for (let i = 0; i < people; i++) {
       passengers.push({
         passengerClass: 1,

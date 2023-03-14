@@ -14,6 +14,8 @@ import { useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import LoadingMessage from '../components/LoadingMessage';
 import { set } from 'react-hook-form';
+import React from 'react';
+import { nextStepContext } from '../components/Context/NextStepContextProvider';
 
 const TypographyZindex = styled(Typography)(({ color = '#fff' }) => ({
   zIndex: '20',
@@ -44,8 +46,9 @@ function Page4() {
   const lang = useTranslateStore(state => state.lang);
   const selectedDate = useBoundStore(state => state.selectedDate);
   const selectedPeople = useBoundStore(state => state.selectedPeople);
-const pushPassengers = (people, type) => {
   let k=0;
+
+const pushPassengers = (people, type) => {
   for (let i = 0; i < people; i++) {
     passengers.push({
       passengerClass: 1,
@@ -64,7 +67,8 @@ const passengers = [];
 pushPassengers(selectedPeople.adults, 'AD');
 pushPassengers(selectedPeople.children, 'CH');
 pushPassengers(selectedPeople.infants, 'IN');
-  /*console.log(selectedCard);*/
+  console.log(passengers);
+
   if(lang=='gr'){
     var  hmeromhniaEkdromis='Ημερομηνία εκδρομής';
     var pros='ΠΡΟΣ';
@@ -245,7 +249,8 @@ pushPassengers(selectedPeople.infants, 'IN');
    state => state.setflag_final
  );
 
- 
+ const { nextStepObj, setNextStepObj } = React.useContext(nextStepContext);
+
  const postFinalizeobj = {
   leader_name: usersInformation[0].lastName +" " + usersInformation[0].firstName,
   leader_first_name: usersInformation[0].firstName,
@@ -260,6 +265,8 @@ pushPassengers(selectedPeople.infants, 'IN');
   passengers:passengers,
   rsrv: rsvr,
   lang:lang,
+  agency_name:nextStepObj.agency_name,
+  agency_code:nextStepObj.agency_code
 };
 
 

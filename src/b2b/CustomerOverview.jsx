@@ -9,6 +9,8 @@ import CustomerInfoCard from './CustomerInfoCard';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import EuroOutlinedIcon from '@mui/icons-material/EuroOutlined';
 import ActiveIcon from '@mui/icons-material/MoreTime';
+import NumberPicker from "react-widgets/NumberPicker";
+
 
 import AddIcon from '@mui/icons-material/AddOutlined';
 import VisibilityIcon from '@mui/icons-material/VisibilityOutlined';
@@ -253,7 +255,10 @@ function CustomerOverview({
                 // height: '100vh',
               }}
             >
-              <SearchBar />
+          
+       
+           
+              
               <BookingsCard
                 data={data.bookingsArray}
                 status={nextStepObj?.filteredStatusBookingsCard}

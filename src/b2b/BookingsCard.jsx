@@ -21,6 +21,10 @@ import CruisesData from './Dummy/Data/CruisesData';
 import * as yup from 'yup';
 import NationalitiesData from './Dummy/Data/NationalitiesData';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import NumberPicker from "react-widgets/NumberPicker";
+import DatePickerFrom from './DatePickerFrom';
+import DatePickerTo from './DatePickerTo';
+
 
 const theme = createTheme({
   components: {
@@ -56,6 +60,8 @@ export default function BookingsCard({ data, status }) {
   const [cruises, setCruises] = React.useState(null);
   const [checked, setChecked] = React.useState([0]);
   const [nationalitiesData, setNationalitiesData] = React.useState(null);
+  const [value, setValue] = React.useState(0)
+
   //=============================================
   //language handling
   const [text, setText] = React.useState({
@@ -547,10 +553,11 @@ export default function BookingsCard({ data, status }) {
                 onClick={clickHandler}
                 disabled={checked.length === 2 ? false : true}
               >
+
                 Εμφάνιση κράτησης
               </Button>
               <Button
-                sx={{ marginLeft: { lg: '20px', xs: '0' } }}
+                sx={{ marginLeft: { lg: '20px', xs: '0' }, marginRight:  { lg: '20px', xs: '0' }}}
                 variant="outlined"
                 size="small"
                 onClick={modifyHandler}
@@ -558,6 +565,7 @@ export default function BookingsCard({ data, status }) {
               >
                 Τροποποίηση κράτησης
               </Button>
+             
             </Box>
           </ListItem>
           <Divider component="li" />

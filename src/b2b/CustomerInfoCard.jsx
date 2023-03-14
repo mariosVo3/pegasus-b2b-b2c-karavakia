@@ -78,6 +78,7 @@ function CustomerInfoCard({ icon, text, info, option }) {
         >
           {receivedIcon}
         </Box>
+        
         <Stack spacing={1} alignItems="center" justifyContent="center">
           <Typography
             variant="subtitle1"

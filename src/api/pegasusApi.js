@@ -1,15 +1,22 @@
 import axios from 'axios';
 
+
+
+
+
 const pegasusApi = axios.create({
   baseURL: 'https://infounit.ten06.eu/pegasus',
+ 
+  rejectUnauthorized: false
 });
 
 export const getPorts = async () => {
-  const response = await pegasusApi.get('/ports');
+  const response = await pegasusApi.get('https://infounit.ten06.eu/pegasus/ports');
   return response.data;
 };
 
-
+/*
+export const getPorts= axios.get('https://infounit.ten06.eu/pegasus/ports');*/
 
 export const getCountries = async () => {
   const response = await pegasusApi.get('/countries');
@@ -116,7 +123,7 @@ export const getAgentOrders = async obj => {
   return response.data;
 };
 
-
+/*
 //B2B calls
 export const getPortsB2B = async () => {
   const response = await pegasusApi.get('/ports');
@@ -217,4 +224,4 @@ export const getFinalizeB2B = async obj => {
   return response.data;
 };
 
-
+*/
