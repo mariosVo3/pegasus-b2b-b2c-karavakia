@@ -29,7 +29,7 @@ function CustomerInfoCard({ icon, text, info, option }) {
       case 1:
         setNextStepObj({
           ...nextStepObj,
-          filteredStatusBookingsCard: 'all',
+          filteredStatusBookingsCard: 'ALL',
           showAllBookings: true,
         });
         break;
@@ -38,7 +38,7 @@ function CustomerInfoCard({ icon, text, info, option }) {
       case 3:
         setNextStepObj({
           ...nextStepObj,
-          filteredStatusBookingsCard: 'optional',
+          filteredStatusBookingsCard: 'OPTION',
           showAllBookings: true,
         });
         break;

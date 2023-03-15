@@ -24,7 +24,11 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import NumberPicker from "react-widgets/NumberPicker";
 import DatePickerFrom from './DatePickerFrom';
 import DatePickerTo from './DatePickerTo';
-
+import { useBoundStore } from '../store/store';
+import { useQuery } from '@tanstack/react-query';
+import { getAgentOrders, getOrder } from '../api/pegasusApi';
+import dayjs from 'dayjs';
+import { set } from 'react-hook-form';
 
 const theme = createTheme({
   components: {
@@ -60,8 +64,16 @@ export default function BookingsCard({ data, status }) {
   const [cruises, setCruises] = React.useState(null);
   const [checked, setChecked] = React.useState([0]);
   const [nationalitiesData, setNationalitiesData] = React.useState(null);
-  const [value, setValue] = React.useState(0)
 
+
+  const [value, setValue] = React.useState(0)
+  const [getOrderData, setgetOrderData] = React.useState(false)
+  const lang = useBoundStore(state => state.lang);
+  const selectedDateFrom = useBoundStore(state => state.selectedDateFrom);
+  const selectedDateTo = useBoundStore(state => state.selectedDateTo);
+  const setSelectedNumber = useBoundStore(state => state.setSelectedNumber);
+
+  setSelectedNumber(value);
   //=============================================
   //language handling
   const [text, setText] = React.useState({
@@ -417,6 +429,35 @@ export default function BookingsCard({ data, status }) {
     }
   };
 
+  const get_order_handler = () => {
+   setgetOrderData(true)
+
+  }
+
+  const postGetOrdersObj = {
+    date_from: dayjs(selectedDateFrom).format('YYYY/MM/DD'),
+    date_to: dayjs(selectedDateTo).format('YYYY/MM/DD'),
+    number_of_orders: value,
+    data_type: nextStepObj.filteredStatusBookingsCard,
+    lang: lang,
+    agency_name:nextStepObj.agency_name,
+    agency_code:nextStepObj.agency_code
+  };
+
+    const agent_orders = useQuery({
+      queryKey: ['agent_order', postGetOrdersObj],
+      queryFn: () => getAgentOrders(postGetOrdersObj),
+      enabled: !!getOrderData,
+    })
+  console.log(agent_orders.data)
+
+  /*
+  if(agent_orders?.data){
+    setDataToUse(agent_orders.data)
+  }*/
+
+
+  console.log(value)
   //TODO: SEND DELETE REQUEST TO THE SERVER???
   const deleteHandler = () => {
     console.log('HTTP DELETE TO THE SERVER?');
@@ -427,17 +468,14 @@ export default function BookingsCard({ data, status }) {
   const selectAllHandler = () => {
     setChecked([0]);
   };
-
+console.log(nextStepObj)
   return (
     <Container
       maxWidth="lg"
       sx={{ display: { lg: 'block', xs: 'flex' }, justifyContent: 'center' }}
     >
       <ThemeProvider theme={theme}>
-        {!nationalitiesData && (
-          <NationalitiesData setNationalitiesData={setNationalitiesData} />
-        )}
-        <CruisesData onSendCruises={receiveCruises} />
+      
         {cruises && checked.length > 1 && (
           <ModalSelectedBookingDetails data={dataToUse} />
         )}
@@ -477,8 +515,8 @@ export default function BookingsCard({ data, status }) {
                 },
               }}
             >
-              <Box sx={{ display: 'flex', gap: '5px' }}>
-                <Box sx={{ width: '40px' }}>
+              <Box sx={{ display: 'flex', gap: '0px' }}>
+                <Box sx={{ width: '50px' }}>
                   <Box
                     onClick={selectAllHandler}
                     sx={{
@@ -567,6 +605,20 @@ export default function BookingsCard({ data, status }) {
               </Button>
              
             </Box>
+            <DatePickerFrom />
+            <DatePickerTo />
+            <NumberPicker 
+                    min={1} max={50} value={value}
+                    onChange={value => setValue(value)}
+                    />
+            <Button
+                sx={{ marginLeft: { lg: '10px', xs: '0' }, marginRight:  { lg: '10px', xs: '0' }}}
+                variant="outlined"
+                size="small"
+                onClick={get_order_handler}
+              >
+                Υποβολή
+              </Button>
           </ListItem>
           <Divider component="li" />
 
