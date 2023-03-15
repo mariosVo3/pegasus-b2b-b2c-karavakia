@@ -1,7 +1,14 @@
 import React from 'react';
 import customerData from '../dummyData/customerData.json';
+import { useQuery } from '@tanstack/react-query';
+import { getAgentOrders } from '../../../api/pegasusApi';
+import { nextStepContext } from '../../../components/Context/NextStepContextProvider';
+import dayjs from 'dayjs';
 
 function CustomerData(props) {
+  
+  const { nextStepObj, setNextStepObj } = React.useContext(nextStepContext);
+
   React.useEffect(() => {
     //IIFE
     (async function () {

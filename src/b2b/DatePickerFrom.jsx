@@ -9,12 +9,12 @@ import { Container } from '@mui/material';
 
 
 function DatePickerFrom() {
-  const selectedDate = useBoundStore(state => state.selectedDate);
+  const selectedDateFrom = useBoundStore(state => state.selectedDateFrom);
   const lang = useTranslateStore(state => state.lang);
 
-  const setSelectedDate = useBoundStore(state => state.setSelectedDate);
+  const setSelectedDateFrom = useBoundStore(state => state.setSelectedDateFrom);
   const handleChange = newValue => {
-    setSelectedDate(newValue);
+    setSelectedDateFrom(newValue);
   };
   if(lang=='gr'){
     var  date='Επιλογή Ημερομηνίας';
@@ -49,9 +49,9 @@ function DatePickerFrom() {
         maxDate={dayjs(new Date())}
         label={date}
         inputFormat="DD/MM/YYYY"
-        value={selectedDate}
+        value={selectedDateFrom}
         onChange={handleChange}
-        renderInput={params => <TextField {...params} sx={{ width: 200 }} />}
+        renderInput={params => <TextField {...params} sx={{ width: 100 }} />}
       />
       </Container>
     </LocalizationProvider>

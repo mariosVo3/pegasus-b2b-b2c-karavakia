@@ -123,6 +123,11 @@ export const getAgentOrders = async obj => {
   return response.data;
 };
 
+
+export const getOrder = async obj => {
+  const response = await pegasusApi.post('/get_order', obj);
+  return response.data;
+};
 /*
 //B2B calls
 export const getPortsB2B = async () => {
